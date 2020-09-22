@@ -1,0 +1,27 @@
+{
+  "name": "http-api-assignment-ii",
+  "version": "1.0.0",
+  "description": "second http api assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "watch": "nodemon --watch src server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"test complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankitasahaa/http-api-assignment-ii.git"
+  },
+  "author": "Ankita Saha",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ankitasahaa/http-api-assignment-ii/issues"
+  },
+  "homepage": "https://github.com/ankitasahaa/http-api-assignment-ii#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
