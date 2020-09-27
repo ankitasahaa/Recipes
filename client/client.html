@@ -4,7 +4,59 @@
   <title>Our simple HTTP server</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <input id="search"><button onclick="getrecipe(document.getElementById('search').value)">Search.</button>
+  <div id="titleoutput"></div>
+  <div id="imageoutput" class="image"></div>
+  <div id="output" class="recipeinfo"></div>
+  <a href="" id="sourceLink"></a>
+  <script>
+  function getSource(id){
+	$.ajax({
+		url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=d13206bfde524fc6a62344373b05ddf0",
+		success: function(res){
+			document.getElementById("sourceLink").innerHTML=res.sourceUrl
+			document.getElementById("sourceLink").href=res.sourceUrl
+		}
+	});
+  };
+  
+  function getingredients(id){
+	$.ajax({
+		url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=d13206bfde524fc6a62344373b05ddf0&includeNutrition=false",
+		success: function(res){
+			var ul = document.createElement("UL");
+			for (i in res.extendedIngredients){
+				var listItem = document.createElement("li");
+				var listValue = document.createTextNode(res.extendedIngredients[i].name);
+				listItem.appendChild(listValue);
+				ul.appendChild(listItem);
+				/*document.getElementById("output").innerHTML+=res.extendedIngredients[i].name+"<br>";*/
+			}
+			document.getElementById("output").appendChild(ul);
+		}
+	});
+  };
+  
+  function getrecipe(q){
+	$.ajax({
+		url:"https://api.spoonacular.com/recipes/search?apiKey=d13206bfde524fc6a62344373b05ddf0&number=1&query="+q,
+		success: function(res){
+			document.getElementById("titleoutput").innerHTML="<h1>"+res.results[0].title+"</h1><br>";
+			document.getElementById("imageoutput").innerHTML="<img src='"+res.baseUri+res.results[0].image+"'width='400'/><br>";
+			document.getElementById("output").innerHTML="Ready in "+res.results[0].readyInMinutes+" minutes!<br>"+
+														"Servings:"+res.results[0].servings+"<br>"+
+														"Ingredients:<br>";
+														
+			
+			getSource(res.results[0].id)
+			getingredients(res.results[0].id)
+		}
+	});
+  };
+  </script>
+  
+  <!--
   <script type="text/babel">
         
     const parseJSON = (xhr, content) => {
@@ -122,3 +174,4 @@
   </section>
 </body>
 </html>
+-->

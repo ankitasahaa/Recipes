@@ -5,6 +5,18 @@ html, body {
   padding: 0;
 }
 
+.image {
+	display: inline-block;
+	align: left;
+	margin-left: 4em;
+}
+
+.recipeinfo {
+	display: inline-block;
+	align: right;
+	margin-left: 4em;
+}
+
 #top {
   text-align: center;
   margin: 0 auto;
