@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
+    "stop": "killall -SIGINT",
     "watch": "nodemon --watch src server.js",
     "pretest": "eslint ./src --fix",
     "test": "echo \"test complete\""
@@ -22,6 +23,6 @@
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.1"
   }
 }

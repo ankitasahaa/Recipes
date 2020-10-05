@@ -12,7 +12,7 @@ const getUsers = (req, res) => {
 
 const addUser = (req, res, query) => {
   const responseJSON = {
-    message: 'Name and age are both required.',
+    message: 'Name, amount, and unit required.',
   };
 
   if (!query.name || !query.age) {
@@ -25,7 +25,8 @@ const addUser = (req, res, query) => {
 
   users[query.name] = {
     name: query.name,
-    age: query.age,
+    amount: query.age,
+    unit: query.unit,
   };
 
   if (responseCode === 201) {
@@ -41,8 +42,10 @@ const notReal = (req, res) => {
     id: 'notFound',
   });
 };
+
 module.exports = {
   getUsers,
   addUser,
   notReal,
+  users,
 };
